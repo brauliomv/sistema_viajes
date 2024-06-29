@@ -1,0 +1,8 @@
+Requisitos:
+ - php 8.2.12
+ - composer 2.7.7
+
+- Crear base de datos en MySQL con el nombre sistema_viajes
+- En la raiz del proyecto, ejecutar el comando php artisan migrate --seed
+- Ejecutar el comando php artisan serve
+- Ingresar al sistema con el correo "admin@sys.com" y contraseña "password"
