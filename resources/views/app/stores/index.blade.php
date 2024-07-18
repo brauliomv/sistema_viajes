@@ -26,7 +26,7 @@
             <td>{{$store->name}}</td>
             <td>{{$store->phone}}</td>
             <td>{{$store->email}}</td>
-            <td><a href="{{ route('edit_store',  $store) }}">Editar</a></td>
+            <td><a href="{{ route('edit_store',  $store) }}">Administrar</a></td>
             <td><a href="{{ route('show_store',  $store) }}">Distancias</a></td>
             <form action="{{ route('delete_store', $store) }}" method="post">
                 @csrf

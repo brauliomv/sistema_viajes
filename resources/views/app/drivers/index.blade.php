@@ -15,6 +15,7 @@
             <th>No.</th>
             <th>Nombre</th>
             <th>DNI</th>
+            <th>Tarifa por Km</th>
             <th>Acciones</th>
         </tr>
         @php($count = 1)
@@ -24,6 +25,7 @@
             <td>{{$count++}}</td>
             <td>{{$driver->name}}</td>
             <td>{{$driver->dni}}</td>
+            <td> L. {{$driver->fee}}</td>
             <td><a href="{{ route('edit_driver',  $driver) }}">Editar</a></td>
             <form action="{{ route('delete_driver', $driver) }}" method="post">
                 @csrf

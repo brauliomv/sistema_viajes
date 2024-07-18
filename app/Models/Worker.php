@@ -17,6 +17,12 @@ class Worker extends Model
 
     //Relacion muchos a muchos, un colaborador puede estar asignado a mas de una sucursal
     public function stores(){
-        return $this->belongsToMany('App\Models\Store');
+        return $this->belongsToMany('App\Models\Store')
+                    ->withPivot('distance');
+    }
+
+    //Relacion con viajes, un colaborador realiza un viaje
+    public function ride(){
+        return $this->belongsTo('App\Models\Ride');
     }
 }

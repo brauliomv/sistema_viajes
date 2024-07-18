@@ -7,6 +7,7 @@
         <span style="color:green">{{$message}}</span>
     @endif
     <br>
+    <br>
     <div>
         <a href="{{ route('create_worker') }}">Crear nuevo</a>
     </div>
@@ -16,6 +17,7 @@
             <th>No.</th>
             <th>Nombre</th>
             <th>DNI</th>
+            <th>Correo</th>
             <th>Telefono</th>
             <th>Acciones</th>
         </tr>
@@ -25,6 +27,7 @@
         
             <td>{{$count++}}</td>
             <td>{{$worker->name}}</td>
+            <td>{{$worker->dni}}</td>
             <td>{{$worker->email}}</td>
             <td>{{$worker->phone}}</td>
             <td><a href="{{ route('edit_worker',  $worker) }}">Editar</a></td>

@@ -2,7 +2,7 @@
 
 @section('title','Nuevo')
 @section('content')
-    <h2>Create a new driver</h2>
+    <h2>Crear nuevo conductor</h2>
    
     <div class="back">
         <a href="{{ route('show_drivers') }}">Regresar</a>
@@ -25,6 +25,14 @@
             <small style="color:red">{{$message}}</small>
         @enderror
         <br>
+        <div class="form-group">
+            <label for="fee">Tarifa por Kilómetro (Lps.)</label>
+            <input type="text" name="fee" id="fee" value="{{ old('fee') }}">
+        </div>
+        <br>
+        @error('fee')
+            <small style="color:red">{{$message}}</small>
+        @enderror
         <button type="submit">Guardar</button>
     </form>
 @endsection    

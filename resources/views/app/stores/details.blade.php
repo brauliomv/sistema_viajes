@@ -2,24 +2,18 @@
 
 @section('title','Administrar')
 @section('content')
-    <h2>Asignar distancias a colaboradores</h2>
-   
+    <p>Registrar distancias a colaboradores asignados para: {{ $store->name }}<p>
+    @if($message = Session::get('success'))
+        <span style="color:green">{{$message}}</span>
+    @endif
+    @if($message = Session::get('error'))
+        <span style="color:red">{{$message}}</span>
+    @endif
     <div class="back">
         <a href="{{ route('show_stores') }}">Regresar</a>
     </div>
     <br>
-        <div class="form-group">
-            <label for="name">Nombre: </label>
-            <strong name="name">{{ $store->name }}</strong>
-        </div>
-        <div class="form-group">
-            <label for="name">ID: </label>
-            <strong name="name">{{ $store->id }}</strong>
-        </div>
-        @error('name')
-            <small style="color:red">{{$message}}</small>
-        @enderror
-        <br>
+
         <div class="form-group">
             <label for="phone">Teléfono: </label>
             <strong name="name">{{ $store->phone }}</strong>
@@ -40,25 +34,29 @@
             $count = 1;
         @endphp
         <form action="{{ route('store_distance', $store) }}" method="post">@csrf
+        @method('PATCH')
             <table>
                 <tr>
                     <th>No.</th>
                     <th>Colaborador</th>
                     <th>Distancia Domicilio/Sucursal</th>
+                   
                 </tr>
                 @foreach ($store->workers as $worker )
                 <tr>
                     <td>{{ $count++ }}</td>
                     <td> {{ $worker->name }}</td>
-                    <td><input type="number" name="distance[{{ $worker->id }}]" id="distance"> Km</td>
+                        @method('PATCH')
+                         <input type="hidden" name="workers[ {{ $worker->id }} ][id]" value="{{ $worker->id }}">
+                         <td><input type="text" name="workers[ {{ $worker->id }} ][distance]" id="distance" value="{{ $worker->pivot->distance ?? '' }}"> Km</td>  
                 </tr>
                 @endforeach
             </table>
+            <br>
+            <button type="submit">Guardar</button>
+            </form>
             @error('workers')
             <small style="color:red">{{$message}}</small>
             @enderror
-            <br>
-            <button type="submit">Guardar</button>
-        </form>
-        
+            <br> 
 @endsection    

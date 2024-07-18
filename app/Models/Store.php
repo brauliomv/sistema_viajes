@@ -17,6 +17,7 @@ class Store extends Model
 
     //Relacion muchos a muchos, una sucursal tiene varios colaboradores
     public function workers(){
-        return $this->belongsToMany('App\Models\Worker');
+        return $this->belongsToMany('App\Models\Worker')
+                    ->withPivot('distance');
     }
 }

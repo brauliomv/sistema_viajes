@@ -13,5 +13,11 @@ class Driver extends Model
     protected $fillable = [
         'name',
         'dni',
+        'fee',
     ];
+
+    //Un conductor realiza un viaje
+    public function ride(){
+        return $this->belongsTo('App\Models\Ride');
+    }
 }

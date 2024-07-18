@@ -26,6 +26,7 @@ class UpdateDriverRequest extends FormRequest
         return [
             'name' => 'required|min:2',
             'dni'  => 'required|numeric|digits:13|unique:drivers,dni,'.$this->driver->id,
+            'fee'  => 'required',
         ];
     }
 
@@ -39,6 +40,7 @@ class UpdateDriverRequest extends FormRequest
             'dni.min' => 'El campo debe contener al menos 13 dígitos',
             'dni.max' => 'El campo debe contener un máximo de 13 dígitos',
             'dni.unique' => 'Este número de identificación ya existe',
+            'fee.required' => 'El campo es requerido',
         ];
     }
 }

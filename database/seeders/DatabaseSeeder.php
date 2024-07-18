@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         Role::insert([
             'name' => 'Gerente de tienda',
+        ],[
+            'name' => 'Asistencia',
         ]);
 
 
@@ -27,6 +29,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@sys.com',
             'password' => bcrypt('password'),
             'role_id'  => 1,
+        ],[
+            'name' => 'Asistente administrativo',
+            'email' => 'asistencia@sys.com',
+            'password' => bcrypt('password'),
+            'role_id'  => 2,
         ]);
     }
 }

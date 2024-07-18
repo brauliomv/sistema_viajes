@@ -48,4 +48,9 @@ class User extends Authenticatable
     public function role(){
         return $this->belongsTo('App\Models\Role');
     }
+
+    //Un usuario registra un viaje
+    public function ride(){
+        return $this->belongsTo('App\Models\Ride');
+    }
 }

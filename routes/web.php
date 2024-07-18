@@ -6,6 +6,7 @@ use App\Http\Controllers\Stores\StoreController;
 use App\Http\Controllers\Welcome\WelcomeController;
 use App\Http\Controllers\Users\UserController;
 use App\Http\Controllers\Workers\WorkerController;
+use App\Http\Controllers\Rides\RideController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -110,7 +111,7 @@ Route::get('/store-details/{store}',[StoreController::class,'show'])->name('show
 Route::delete('/delete-store/{store}',[StoreController::class,'destroy'])->name('delete_store')->middleware('auth.basic');
 
 //Add distances
-Route::post('/add-distances/{store}',[StoreController::class,'distance'])->name('store_distance')->middleware('auth.basic');
+Route::patch('/add-distances/{store}',[StoreController::class,'distance'])->name('store_distance')->middleware('auth.basic');
 
 /*
 
@@ -136,3 +137,31 @@ Route::patch('/update-worker/{worker}',[WorkerController::class,'update'])->name
 
 //Delete worker
 Route::delete('/delete-worker/{worker}',[WorkerController::class,'destroy'])->name('delete_worker')->middleware('auth.basic');
+
+
+/*
+
+------------------------  Viajes  ------------------------ 
+
+*/
+
+//Index rides
+Route::get('/rides',[RideController::class,'index'])->name('show_rides')->middleware('auth.basic');
+
+//Create ride
+Route::get('/create-ride',[RideController::class,'create'])->name('create_ride')->middleware(['auth.basic','isAdmin']);
+
+//Select workers
+Route::post('/asign-workers',[RideController::class,'asignWorkers'])->name('asign_workers')->middleware('auth.basic');
+
+//Store ride
+Route::post('/save-ride',[RideController::class,'store'])->name('store_ride')->middleware('auth.basic');
+
+
+
+//Update ride route
+Route::patch('/update-ride/{ride}',[RideController::class,'update'])->name('update_ride')->middleware('auth.basic');
+
+
+//Delete ride
+Route::delete('/delete-ride/{ride}',[RideController::class,'destroy'])->name('delete_ride')->middleware('auth.basic');

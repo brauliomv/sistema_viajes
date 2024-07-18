@@ -5,7 +5,7 @@
 <div class="wrapper">
     <div class="content">
         <h1>Sistema de gestión de viajes</h1>
-        <span class="greeting">Bienvenido <strong>{{ Auth::user()->name }}</strong>!</span>
+        <span class="greeting">Bienvenido <strong>{{ Auth::user()->name }}!</strong></span>
     </div>
 </div>
 @endsection

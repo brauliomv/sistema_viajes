@@ -28,11 +28,6 @@ class StoreController extends Controller
 
     public function store(StoreRequest $request)
     {
-        // $store = new Store();
-        // $store -> name = $request['name'];
-        // $store -> phone = $request['phone'];
-        // $store -> email = $request['email'];
-        // $store->save();
         $store = Store::create($request->all());
         $store -> workers()->sync($request->workers);
 
@@ -74,7 +69,13 @@ class StoreController extends Controller
         return redirect()->route('show_stores')->with('success','Datos actualizados');
     }
 
-    public function distance(Request $request,Store $store){
-        dd($request['distance']);
+    public function distance(Request $request, Store $store, Worker $worker){
+       foreach($request->workers as $workerId => $data){
+            if( $data['distance'] <= 0 || $data['distance'] >= 50){
+                return redirect()->back()->with('error','La distancia ingresada no puede ser menor/igual a 0, ni mayor/igual a 50');
+            }
+            $store->workers()->updateExistingPivot($workerId, ['distance' => $data['distance']]);
+       }
+       return redirect()->back()->with('success','Datos actualizados correctamente');
     }
 }
