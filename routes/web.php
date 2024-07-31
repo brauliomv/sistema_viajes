@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Drivers\DriverController;
 use App\Http\Controllers\Login\LoginController;
+use App\Http\Controllers\Reports\ReportController;
 use App\Http\Controllers\Stores\StoreController;
 use App\Http\Controllers\Welcome\WelcomeController;
 use App\Http\Controllers\Users\UserController;
@@ -163,5 +164,15 @@ Route::post('/save-ride',[RideController::class,'store'])->name('store_ride')->m
 Route::patch('/update-ride/{ride}',[RideController::class,'update'])->name('update_ride')->middleware('auth.basic');
 
 
-//Delete ride
-Route::delete('/delete-ride/{ride}',[RideController::class,'destroy'])->name('delete_ride')->middleware('auth.basic');
+//Ride details
+Route::get('/ride-details/{ride}',[RideController::class,'rideDetails'])->name('ride_details')->middleware('auth.basic');
+
+
+
+//Reports 
+
+//Index
+Route::get('/reports',[ReportController::class,'index'])->name('reports')->middleware('auth.basic');
+
+//Generate report
+Route::get('/generate-report',[ReportController::class,'generate'])->name('generate_report')->middleware('auth.basic');

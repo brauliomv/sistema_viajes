@@ -10,4 +10,5 @@
         @include('app.partials.navigation')
         @yield('content')
     </body>
+    
 </html> 

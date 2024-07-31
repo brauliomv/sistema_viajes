@@ -106,6 +106,11 @@ class RideController extends Controller
     }
 
 
+    public function rideDetails(Ride $ride){
+         return view('app.rides.ride_details',compact('ride'));
+     
+    }
+
     public function show()
     {
         //

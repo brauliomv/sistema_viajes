@@ -7,7 +7,7 @@
             <li><a href="{{ route('show_workers') }}">Colaboradores</a></li>
             <li><a href="{{route('show_drivers')}}">Conductores</a></li>
             <li><a href="{{ route('show_rides') }}">Viajes</a></li>
-            <li><a href="#">Reportes</a></li>
+            <li><a href="{{ route('reports') }}">Reportes</a></li>
             <li>
                 <form action="{{ route('logout') }}" method="POST">@csrf
                 

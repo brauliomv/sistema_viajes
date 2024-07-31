@@ -26,17 +26,11 @@
         @php($count = 1)
         @foreach($rides as $ride)
         <tr>
-        
             <td>{{$count++}}</td>
             <td>{{$ride->driver->name}}</td>
             <td>{{$ride->distance}} km</td>
             <td>{{$ride->user->name}}</td>
-            <form action="{{ route('delete_ride', $ride) }}" method="post">
-                @csrf
-                @method('delete')
-                <td><button type="submit">Detalles</button></td>
-            </form>
-            
+            <td><a href="{{route('ride_details', $ride)}}">Detalles</a></td>     
         </tr>
         @endforeach
     </table>

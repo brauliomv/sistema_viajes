@@ -2,6 +2,15 @@
     font-family: 'Poppins', sans-serif;
 }
 
+/*colors*/
+
+:root{
+    --color1:#ced3dc;
+    --color2:#fcf7f8;
+    --color3:#004e98;
+    --color4:#f0f1f3;
+}
+
 .login{
     display: flex; 
     justify-content: center;
@@ -46,5 +55,56 @@ ul li{
 table{
     width: 60em;
     text-align: center;
+    border-collapse: collapse;
 }
 
+
+/* Ride details */
+.card{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.card-head{
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    background: var(--color1);
+    margin-bottom: 1em;
+}
+
+
+.card-body{
+    background-color: var(--color2);
+    padding: 1em;
+}
+
+.workers-table th, td{  
+    border: solid 1px var(--color1);
+    
+}
+
+.payout{
+    display: flex;
+    justify-content: right;
+    margin-top: 1em;
+    background-color: var(--color3);
+    color: var(--color4);
+    font-size: 1.5em;
+    padding: 0.1em 1em 0.1em 1em;
+    
+}
+
+
+/* Reports form */
+.param-body{
+    display: flex;
+    justify-content: left;
+}
+
+.driver, .start-date, .end-date, .generate{
+    margin: 1em 1em 1em 1em;
+}
+
+/*Report document*/
