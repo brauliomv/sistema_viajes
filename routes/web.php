@@ -10,7 +10,6 @@ use App\Http\Controllers\Workers\WorkerController;
 use App\Http\Controllers\Rides\RideController;
 use Illuminate\Support\Facades\Route;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes

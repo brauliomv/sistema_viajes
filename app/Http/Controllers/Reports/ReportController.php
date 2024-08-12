@@ -39,11 +39,14 @@ class ReportController extends Controller
                 $totalDistance = $totalDistance + $ride->distance;
              }
             $payment = $totalDistance * $driver->fee;
-           // return view('app.reports.ride_report',compact(['rides','driver', 'totalDistance','payment']));
+
             $pdf = Pdf::loadView('app.reports.ride_report',compact(['rides','driver', 'totalDistance','payment']));
-            //$pdf = SnappyPdf::loadView('app.reports.ride_report',compact(['rides','driver', 'totalDistance','payment']));
-            //$pdf->setOption('no-print-media-type', true);
             return $pdf->stream('reporte_'.$driver->name.'.pdf');
+
+            // $pdf = SnappyPdf::loadView('app.reports.ride_report',compact(['rides','driver', 'totalDistance','payment']));
+            // $pdf->setOption('enable-local-file-access', true);
+            // $pdf->setOption('no-print-media-type', true);
+            // return $pdf->inline('reporte_'.$driver->name.'.pdf');
             
         }else{
             return redirect()->back()->with('error','No se han encontrado registros para las fechas establecidas');

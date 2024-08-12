@@ -2,40 +2,68 @@
 
 @section('title','Editar')
 @section('content')
-<h2>Editar conductor</h2>
-@if($message = Session::get('info'))
-    <span style="color:blue">{{$message}}</span>
-@endif
-<div class="back">
-    <a href="{{ route('show_drivers') }}">Regresar</a>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Editar información de conductor</h1>
+    <a href="{{ route('show_drivers') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+            class="fas fa-arrow-alt-circle-left text-white-50"></i> Regresar</a>
 </div>
-<br>
-<form action="{{ route('update_driver',$driver) }}" method="POST">@csrf
-    @method('PATCH')
-    <div class="form-group">
-        <label for="name">Nombre</label>
-        <input type="text" name="name" id="name" value="{{$driver->name}}">
+
+<div class="d-flex justify-content-center">
+    <div class="card o-hidden border-0 shadow-lg my-5 col-xl-10">
+        <div class="card-body ">
+            <!-- Nested Row within Card Body -->
+            <div class="row d-flex justify-content-center">
+                <div class="col-xl-10">
+                    <div class="p-5">
+                        <form class="user" action="{{ route('update_driver', $driver) }}" method="POST">@csrf
+                            @method('PATCH')
+                            <div class="form-group">
+                                <div class="d-flex flex-column">
+                                    <label for="name"><strong>Nombre</strong></label>
+                                    <input type="text" class="form-control bg-light  " name="name" id="name" value="{{$driver->name}}">
+                                    @error('name')
+                                        <span style="color:red">{{$message}}</span>
+                                    @enderror
+                                </div>    
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <div class="d-flex flex-column">
+                                            <label for="dni"><strong>DNI</strong></label>
+                                            <input type="text" class="form-control bg-light  " name="dni" id="dni" value="{{$driver->dni}}">
+                                            @error('dni')
+                                                <span style="color:red">{{$message}}</span>
+                                            @enderror
+                                        </div>    
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
+                                        <div class="d-flex flex-column">
+                                            <label for="fee"><strong>Tarifa por Km (L.)</strong></label>
+                                            <input type="text" class="form-control bg-light  " name="fee" id="fee" value="{{$driver->fee}}">
+                                            @error('fee')
+                                                <span style="color:red">{{$message}}</span>
+                                            @enderror
+                                        </div>    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" href="#" class="btn btn-success btn-icon-split">
+                                    <span class="icon text-white-50">
+                                        <i class="fas fa-save"></i>
+                                    </span>
+                                    <span class="text">Guardar</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    @error('name')
-        <small style="color:red">{{$message}}</small>
-    @enderror
-    <br>
-    <div class="form-group">
-        <label for="dni">DNI Conductor</label>
-        <input type="text" name="dni" id="dni" value="{{$driver->dni}}">
-    </div>
-    @error('dni')
-        <small style="color:red">{{$message}}</small>
-    @enderror
-    <br>
-    <div class="form-group">
-        <label for="fee">Tarifa por Kilómetro (Lps.)</label>
-        <input type="text" name="fee" id="fee" value="{{ $driver->fee }}">
-    </div>
-    <br>
-    @error('fee')
-        <small style="color:red">{{$message}}</small>
-    @enderror
-    <button type="submit">Guardar</button>
-</form>
+</div>
 @endsection

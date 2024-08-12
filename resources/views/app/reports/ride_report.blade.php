@@ -39,7 +39,7 @@
         text-align: center;
         font-weight: bold;
         font-size: 2em;
-        color: #004e98;
+        color: #4e73df;
     }
 
 
@@ -77,9 +77,9 @@
 
     .ride-footer {
             text-align: justify;
-            background: #004e98;
-            border-radius: 0.2em;
             
+            border-radius: 0.5em;
+            border: solid 1px #4e73df;
         }
         
     .ride-footer:after {
@@ -99,7 +99,7 @@
         text-align: center;
         font-size: 1.1em;
         font-weight: bold;
-        color: #f0f1f3;
+        
     }
 
     .total{
@@ -158,10 +158,10 @@
 
                 <div class="ride-footer">
                     <div class="total-distance">
-                        <p>Distancia total recorrida: <br> <p class="total">{{$totalDistance}} km</p></p>
+                        <p>Distancia total recorrida: <br> <p class="total"><strong>{{$totalDistance}} km</strong></p></p>
                     </div>
                     <div class="total-payment">
-                        <p>Total a pagar por viajes realizados: <br> <p class="total">L. {{$payment}}</p></p>
+                        <p>Total a pagar por viajes realizados: <br> <p class="total"><strong>L. {{$payment}}</strong></p></p>
                     </div>
                 </div>
             </div>
