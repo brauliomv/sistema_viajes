@@ -38,7 +38,10 @@ return [
         'binary'  => env('WKHTML_PDF_BINARY', '/usr/local/bin/wkhtmltopdf'),
         'binary' => '"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf"',
         'timeout' => false,
-        'options' => [],
+        'options' => [
+            'enable-local-file-access' => true,
+            'encoding'      => 'UTF-8'
+        ],
         'env'     => [],
     ],
     
@@ -47,7 +50,10 @@ return [
         'binary'  => env('WKHTML_IMG_BINARY', '/usr/local/bin/wkhtmltoimage'),
         'binary' => '"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf"',
         'timeout' => false,
-        'options' => [],
+        'options' => [
+            'enable-local-file-access' => true,
+            'encoding'      => 'UTF-8'
+        ],
         'env'     => [],
     ],
 

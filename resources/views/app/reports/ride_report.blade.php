@@ -1,170 +1,225 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Reporte</title>
-</head>
-<style>
-    *{
-        font-family: 'Poppins', sans-serif;
-    }
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Reporte</title>
 
-    :root{
-    
-        --color2:#fcf7f8;
-        --color3:#004e98;
-        --color4:#f0f1f3;
-    }
+		<style>
 
-    .report{
-       display: flex;
-       justify-content: center;
-    }
+            .invoice-title{
+                text-align: center;
+                font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+				color: #555;
+                font-size: 25px;
+            }
+			.invoice-box {
+				max-width: 800px;
+				margin: auto;
+				padding: 30px;
+				border: 1px solid #eee;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+				font-size: 16px;
+				line-height: 24px;
+				font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+				color: #555;
+			}
 
-    .report-content{
-        margin-top: 3em;
-        display: flex;
-        justify-content: center;
-    }
-    .content{
-        margin-bottom: 3em;
-        opacity: 60%;
-        border: #004e98 solid 1px;
-        padding: 1.1em;
-        border-radius: 0.2em;
-    }
-    .report-title{
-        text-align: center;
-        font-weight: bold;
-        font-size: 2em;
-        color: #4e73df;
-    }
+			.invoice-box table {
+				width: 100%;
+				line-height: inherit;
+				text-align: left;
+			}
 
+			.invoice-box table td {
+				padding: 5px;
+				vertical-align: top;
+			}
 
-    table{
-        
-        text-align: center;
-        border-collapse: collapse;
-    }
+			.invoice-box table tr td:nth-child(2) {
+				text-align: right;
+			}
 
-    .index{
-        width: 5em;
-    }
+			.invoice-box table tr.top table td {
+				padding-bottom: 10px;
+			}
 
-    .worker-name{
-        width: 36em;
-    }
+			.invoice-box table tr.top table td.title {
+				font-size: 40px;
+				line-height: 45px;
+				color: #333;
+                width: 450px;
+			}
 
-    .ride-date, .ride-distance{
-        width: 18.4em;
-    }
+			.invoice-box table tr.information table td {
+				padding-bottom: 10px;
+                padding-top: 20px;
+			}
 
-    .workers-table th, td{  
-        border: solid 1px #ced3dc;
-    }
+			.invoice-box table tr.heading td {
+				background: #eee;
+				border-bottom: 1px solid #ddd;
+				font-weight: bold;
+			}
 
-    tr:nth-child(even) {
-        background-color: #dddddd;
-    }
+			.invoice-box table tr.details td {
+				padding-bottom: 20px;
+			}
 
-    .ride-header{
-        display: flex;
-        justify-content: center;
-        
-    }
+			.invoice-box table tr.item td {
+				border-bottom: 1px solid #eee;
+			}
 
-    .ride-footer {
-            text-align: justify;
-            
-            border-radius: 0.5em;
-            border: solid 1px #4e73df;
-        }
-        
-    .ride-footer:after {
-        content: '';
-        display: inline-block;
-        width: 100%;
-    }
-    
-    .ride-footer > div {
-        display: inline-block;
-        width: 49%; /* Ajusta el ancho según sea necesario */
-        vertical-align: top;
-        
-    } 
-    
-    .total-payment, .total-distance{
-        text-align: center;
-        font-size: 1.1em;
-        font-weight: bold;
-        
-    }
+			.invoice-box table tr.item.last td {
+				border-bottom: none;
+			}
 
-    .total{
-        margin-top: 2em;
-        font-size: 1.3em;
-    }
-    
-</style>
-<body>
-    <div class="report">
-        <div class="report-title">
-            <p>Reporte de viajes realizados </p>
-        </div>
-        <div class="driver">
-            <p>Conductor asignado: <Strong>{{ $driver->name }}</Strong></p>
-        </div>
-            <div class="report-content">
-                    @php
-                        $rideCount = 1;
-                    @endphp
-                    @foreach ($rides as $ride )
-                        <div class="content">
-                            <div class="ride-header">
-                                <table class="ride-header-table">
-                                    <tr>
-                                        <th>Viaje No.</th>
-                                        <th class="ride-date">Fecha del viaje</th>
-                                        <th class="ride-distance">Distancia del viaje</th>
-                                    </tr>
-                                    <tr>
-                                        <td>{{ $rideCount++ }}</td>
-                                        <td class="ride-date">{{ $ride->created_at }}</td>
-                                        <td class="ride-distance">{{ $ride->distance }} km</td>
-                                    </tr>
-                                </table> 
-                            </div>
-                            <p class="table-description">Colaboradores transportados:</p>  
-                            <table class="workers-table">
-                                
-                                <tr>
-                                    <th class="index">No.</th>
-                                    <th class="worker-name">Colaborador</th>
-                                </tr>
-                                @php
-                                    $count = 1;
-                                @endphp
-                                @foreach ($ride->workers as $worker )   
-                                        <tr>
-                                            <td class="index">{{ $count++}}</td> 
-                                            <td class="worker-name">{{ $worker->name }}</td> 
-                                        </tr>
-                                @endforeach
-                            </table> 
-                        </div>
-                    @endforeach
+			.invoice-box table tr.total td:nth-child(2) {
+				border-top: 2px solid #eee;
+				font-weight: bold;
+			}
 
-                <div class="ride-footer">
-                    <div class="total-distance">
-                        <p>Distancia total recorrida: <br> <p class="total"><strong>{{$totalDistance}} km</strong></p></p>
-                    </div>
-                    <div class="total-payment">
-                        <p>Total a pagar por viajes realizados: <br> <p class="total"><strong>L. {{$payment}}</strong></p></p>
-                    </div>
-                </div>
-            </div>
+			@media only screen and (max-width: 600px) {
+				.invoice-box table tr.top table td {
+					width: 100%;
+					display: block;
+					text-align: center;
+				}
+
+				.invoice-box table tr.information table td {
+					width: 100%;
+					display: block;
+					text-align: center;
+				}
+			}
+
+			/** RTL **/
+			.invoice-box.rtl {
+				direction: rtl;
+				font-family: Tahoma, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+			}
+
+			.invoice-box.rtl table {
+				text-align: right;
+			}
+
+			.invoice-box.rtl table tr td:nth-child(2) {
+				text-align: left;
+			}
+
+            .total-payment, .total-distance{
+                font-size: 1.3em;
+                font-weight: bold;
+            }
+
+            .pagenum:before {
+                content: counter(page);
+            }
+
+            footer{
+                text-align: center;
+                font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+				color: #555;
+                margin-top:40px;
+            }
+		</style>
+	</head>
+
+	<body>
+    <div class="invoice-title">
+        <p>Historial de viajes realizados</p>
     </div>
-</body>
+		<div class="invoice-box">
+            
+			<table cellpadding="0" cellspacing="0">
+				<tr class="top">
+					<td colspan="2">
+						<table >
+							<tr>
+								<td class="title">
+                                    <img src="{{ public_path('admin_assets/img/logo3.jpg') }}" style="width: 10%; ">
+                                    <strong>RideRegist</strong>
+								</td>
+
+								<td>
+									Desde: {{ $startDate }} <br />
+									Hasta: {{ $endDate}}
+                                    
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+				<tr class="information">
+					<td colspan="2">
+						<table>
+							<tr>
+								<td>
+									RideRegist.<br />
+                                    Honduras, CA <br>
+                                    Conductor: {{ $driver->name }}
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+                @php
+                    $rideCount = 1;
+                @endphp
+                @foreach ($rides as $ride )
+                <br>
+                    <tr class="information">
+                        <td colspan="2">
+                            <table>
+                                <tr>
+                                    <td>
+                                        Viaje ID >> <strong>#{{ $ride->id }}</strong><br />
+                                        Fecha: <strong>{{$ride->created_at }}</strong><br />
+                                        Distancia: <strong>{{ $ride->distance }} km</strong>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                        @php
+                            $count = 1;
+                        @endphp
+                        <tr class="heading">
+                            <td>#</td>
+                            <td>Colaborador</td>
+                        </tr>
+                        @foreach ($ride->workers as $worker)
+                            <tr class="item">
+                                <td>{{ $count++}}</td>
+                                <td>{{ $worker->name }}</td>
+                            </tr>
+                        @endforeach
+                    
+                @endforeach
+                <tr class="information">
+					<td colspan="2">
+						<table>
+							<tr>
+								<td >
+                                    <center>
+                                        Distancia total recorrida: <br>
+                                        <p class="total-distance">{{$totalDistance}} km<</p>
+                                    </center>
+								</td>
+								<td>
+									<center>
+                                        Total a pagar: <br>
+                                        <p class="total-payment">L. {{$payment}}</p>
+                                    </center>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</div>
+        <footer>
+            Página <span class="pagenum"></span>
+        </footer>
+	</body>
 </html>

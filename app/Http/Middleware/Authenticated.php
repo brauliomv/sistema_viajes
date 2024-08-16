@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Authenticated
 {
@@ -16,8 +17,9 @@ class Authenticated
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!auth() -> check()){
-            return redirect()->route('login')->with('error','Necesitas iniciar sesión para acceder!');
+        $authenticated = Auth::check();
+        if(!$authenticated){
+           return redirect()->route('login_form');  
         }
         return $next($request);
     }

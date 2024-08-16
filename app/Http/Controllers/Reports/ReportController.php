@@ -12,6 +12,7 @@ use Barryvdh\Snappy\Facades\SnappyPdf;
 use Illuminate\Support\Facades\File;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ReportController extends Controller
 {
@@ -38,15 +39,13 @@ class ReportController extends Controller
             foreach($rides as $ride){
                 $totalDistance = $totalDistance + $ride->distance;
              }
-            $payment = $totalDistance * $driver->fee;
-
-            $pdf = Pdf::loadView('app.reports.ride_report',compact(['rides','driver', 'totalDistance','payment']));
-            return $pdf->stream('reporte_'.$driver->name.'.pdf');
-
-            // $pdf = SnappyPdf::loadView('app.reports.ride_report',compact(['rides','driver', 'totalDistance','payment']));
-            // $pdf->setOption('enable-local-file-access', true);
-            // $pdf->setOption('no-print-media-type', true);
-            // return $pdf->inline('reporte_'.$driver->name.'.pdf');
+             $payment = $totalDistance * $driver->fee;
+             $pdf = Pdf::loadView('app.reports.ride_report',compact(['rides','driver', 'totalDistance','payment','startDate','endDate']));
+            try{
+                return $pdf->stream('reporte_'.$driver->name.'.pdf');
+            }catch(\Exception $e){
+                return $e->getMessage();
+            }     
             
         }else{
             return redirect()->back()->with('error','No se han encontrado registros para las fechas establecidas');

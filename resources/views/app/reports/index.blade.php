@@ -14,6 +14,9 @@
         <div class="card-body ">
             <!-- Nested Row within Card Body -->
             <div class="row d-flex justify-content-center">
+                @if($message = Session::get('error'))
+                    <span style="color:red">{{$message}}</span>
+                @endif
                 <div class="col-xl-10">
                     <div class="p-5">
                         <form class="user" action="{{ route('generate_report') }}" method="GET">@csrf
